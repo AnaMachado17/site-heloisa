@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heloisa Aranha - Psicóloga Clínica</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;600&family=Crimson+Text:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', 'Georgia', serif;
+            line-height: 1.7;
+            color: #2c3e2d;
+            background: #fefefe;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(254, 254, 254, 0.95);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(60, 90, 60, 0.08);
+            backdrop-filter: blur(15px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 300;
+            color: #5a7c5a;
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4a5d4a;
+            font-weight: 300;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: #5a7c5a;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: #5a7c5a;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #f7f4f0 0%, #e8e2d5 50%, #f0f4f0 100%);
+            padding-top: 100px;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="0.5" fill="%23d4c5a9" opacity="0.3"/><circle cx="80" cy="40" r="0.3" fill="%235a7c5a" opacity="0.2"/><circle cx="40" cy="70" r="0.4" fill="%23d4c5a9" opacity="0.25"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.4;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: #5a7c5a;
+            font-weight: 300;
+            line-height: 1.2;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .hero-text .subtitle {
+            font-size: 1.4rem;
+            color: #6b7d6b;
+            margin-bottom: 2rem;
+            font-style: italic;
+            font-weight: 300;
+        }
+
+        .hero-text p {
+            font-size: 1.15rem;
+            margin-bottom: 2.5rem;
+            color: #4a5d4a;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1.2rem 2.5rem;
+            border: 2px solid #5a7c5a;
+            border-radius: 50px;
+            font-size: 1.05rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            font-family: 'Crimson Text', serif;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: #5a7c5a;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #4a6b4a;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(90, 124, 90, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #5a7c5a;
+        }
+
+        .btn-secondary:hover {
+            background: #5a7c5a;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(90, 124, 90, 0.3);
+        }
+
+        .hero-image {
+            text-align: center;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .profile-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .profile-image {
+            width: 320px;
+            height: 420px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(60, 90, 60, 0.15);
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            background: #e8e2d5;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-image::before {
+            display: none;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .floating-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(60, 90, 60, 0.12);
+            max-width: 320px;
+            width: 100%;
+            border: 1px solid rgba(90, 124, 90, 0.1);
+            text-align: center;
+        }
+
+        .floating-card h3 {
+            color: #5a7c5a;
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .floating-card p {
+            font-size: 0.95rem;
+            color: #6b7d6b;
+            margin-bottom: 0.4rem;
+            line-height: 1.5;
+        }
+
+        .floating-card .crp {
+            color: #5a7c5a;
+            font-weight: 600;
+        }
+
+        /* About Section */
+        .about {
+            padding: 8rem 0;
+            background: white;
+            position: relative;
+        }
+
+        .about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #d4c5a9, transparent);
+        }
+
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about h2 {
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            color: #5a7c5a;
+            font-weight: 300;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .about-text {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            color: #4a5d4a;
+            text-align: justify;
+            text-justify: inter-word;
+        }
+
+        .about-text p {
+            margin-bottom: 2rem;
+        }
+
+        .about-text .highlight {
+            color: #5a7c5a;
+            font-style: italic;
+            font-weight: 600;
+        }
+
+        .about-text .quote {
+            font-style: italic;
+            font-size: 1.25rem;
+            color: #5a7c5a;
+            text-align: center;
+            margin: 3rem 0;
+            padding: 2rem;
+            background: rgba(212, 197, 169, 0.1);
+            border-radius: 15px;
+            border-left: 4px solid #5a7c5a;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 8rem 0;
+            background: linear-gradient(135deg, #f7f4f0 0%, #e8e2d5 100%);
+            position: relative;
+        }
+
+        .services::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain2" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="15" cy="15" r="0.3" fill="%235a7c5a" opacity="0.15"/><circle cx="85" cy="35" r="0.4" fill="%23d4c5a9" opacity="0.2"/><circle cx="45" cy="75" r="0.2" fill="%235a7c5a" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain2)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .services h2 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 4rem;
+            color: #5a7c5a;
+            font-weight: 300;
+            font-family: 'Playfair Display', serif;
+            position: relative;
+            z-index: 1;
+        }
+
+        .approach-section {
+            background: white;
+            padding: 4rem;
+            border-radius: 20px;
+            margin-bottom: 4rem;
+            box-shadow: 0 20px 60px rgba(60, 90, 60, 0.08);
+            position: relative;
+            z-index: 1;
+            border: 1px solid rgba(90, 124, 90, 0.1);
+        }
+
+        .approach-section h3 {
+            font-size: 2.2rem;
+            color: #5a7c5a;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-weight: 300;
+        }
+
+        .approach-section p {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            color: #4a5d4a;
+            text-align: justify;
+            text-justify: inter-word;
+            margin-bottom: 2rem;
+        }
+
+        .approach-section .emphasis {
+            color: #5a7c5a;
+            font-weight: 600;
+        }
+
+        .specialties {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .specialty-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(60, 90, 60, 0.06);
+            border: 1px solid rgba(90, 124, 90, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .specialty-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(60, 90, 60, 0.12);
+        }
+
+        .specialty-card h4 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #5a7c5a;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .specialty-card p {
+            color: #6b7d6b;
+            line-height: 1.6;
+            font-size: 1.05rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 8rem 0;
+            background: white;
+        }
+
+        .contact-content {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .contact h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            color: #5a7c5a;
+            font-weight: 300;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .contact-subtitle {
+            font-size: 1.3rem;
+            color: #6b7d6b;
+            margin-bottom: 4rem;
+            font-style: italic;
+            line-height: 1.6;
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 4rem;
+        }
+
+        .contact-info {
+            background: linear-gradient(135deg, #f7f4f0 0%, #e8e2d5 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            border-left: 4px solid #5a7c5a;
+            text-align: left;
+        }
+
+        .contact-info h3 {
+            color: #5a7c5a;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .contact-info p {
+            color: #4a5d4a;
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-info strong {
+            color: #5a7c5a;
+        }
+
+        /* Footer */
+        footer {
+            background: #5a7c5a;
+            color: white;
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        footer p {
+            margin-bottom: 0.8rem;
+            opacity: 0.9;
+        }
+
+        .footer-links {
+            margin-top: 2rem;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 2rem;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+            font-size: 1.05rem;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 3rem;
+            }
+
+            .hero-text h1 {
+                font-size: 2.8rem;
+            }
+
+            .profile-image {
+                width: 280px;
+                height: 360px;
+                font-size: 5rem;
+            }
+
+            .floating-card {
+                max-width: 280px;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .contact-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .approach-section {
+                padding: 2.5rem;
+            }
+
+            .about h2, .services h2, .contact h2 {
+                font-size: 2.5rem;
+            }
+
+            .about-text {
+                text-align: left;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Heloisa Aranha</div>
+            <div class="nav-links">
+                <a href="#home">Início</a>
+                <a href="#about">Sobre</a>
+                <a href="#services">Abordagem</a>
+                <a href="#contact">Contato</a>
+            </div>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Heloisa Aranha</h1>
+                    <p class="subtitle">Psicóloga Clínica</p>
+                    <p>Um espaço sagrado de encontro, onde se acolhe a dor, se resgata o sentido e se fortalece o viver. Aqui você encontrará escuta genuína, presença e um caminhar respeitoso em direção ao seu crescimento pessoal.</p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn btn-primary" onclick="openWhatsApp()">
+                            📱 Agendar Consulta
+                        </a>
+                        <a href="#" class="btn btn-secondary" onclick="openInstagram()">
+                            📸 Instagram
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="profile-container" style="width:100%;display:flex;justify-content:center;">
+                        <img src="heloisa.jpeg.jpeg" alt="Heloisa Aranha" class="profile-image" style="display:block;margin:0 auto;">
+                    </div>
+                    <div class="floating-card">
+                        <h3 class="crp">CRP: 06/222679</h3>
+                        <p>Psicóloga Clínica</p>
+                        <p>Atendimento presencial e online</p>
+                        <p>Abordagem fenomenológico-existencial</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content fade-in">
+                <h2>Sobre Mim</h2>
+                <div class="about-text">
+                    <p>Meu nome é <span class="highlight">Heloísa Aranha</span>, sou Psicóloga Clínica com abordagem fenomenológico-existencial, e atuo no atendimento de adolescentes, adultos e idosos.</p>
+                    
+                    <p>Desde criança, sempre soube que queria ser psicóloga. A escuta, o cuidado com o outro e o desejo profundo de compreender a alma humana me acompanharam desde cedo. Para mim, a psicologia é uma das profissões mais lindas que existem — um espaço sagrado de encontro, onde se acolhe a dor, se resgata o sentido e se fortalece o viver. <span class="highlight">Somos médicos da alma.</span></p>
+                    
+                    <div class="quote">
+                        "Meu trabalho é guiado pela escuta genuína, pelo respeito à singularidade de cada pessoa e pela crença de que cada ser humano carrega dentro de si a potência para transformar sua própria história."
+                    </div>
+                    
+                    <p>Mais do que rótulos ou diagnósticos, enxergo trajetórias. Cada encontro é uma construção única, com base no vínculo, na empatia e na confiança.</p>
+                    
+                    <p>Aqui, você encontrará um espaço seguro, acolhedor e sem julgamentos — onde sua existência será respeitada e cuidada com presença, sensibilidade e ética.</p>
+                    
+                    <p class="highlight">Seja bem-vinda(o).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="container">
+            <h2>Abordagem Terapêutica</h2>
+            
+            <div class="approach-section fade-in">
+                <h3>Fenomenológico-Existencial</h3>
+                <p>Minha prática clínica é guiada pela abordagem <span class="emphasis">fenomenológico-existencial</span>, e isso se reflete diretamente na forma como conduzo o processo terapêutico: com presença, escuta atenta e respeito profundo pela singularidade de cada pessoa.</p>
+                
+                <p>Acredito que a terapia é um <span class="emphasis">espaço de encontro</span> — um lugar seguro, acolhedor e sem julgamentos, onde você pode ser quem é, com tudo o que carrega. Mais do que buscar respostas prontas, meu trabalho é caminhar ao seu lado para compreender suas vivências, suas dores e seus silêncios, ajudando você a se escutar de verdade e a construir, no seu tempo, novos sentidos para sua existência.</p>
+                
+                <p>Na prática, isso significa que cada atendimento é único. Não há fórmulas nem roteiros fixos. O que guia o processo é a sua história, o que você traz para cada sessão, e o modo como está vivendo o aqui e agora. Juntas(os), vamos desdobrando as camadas da experiência, olhando com cuidado para suas escolhas, relações, angústias e possibilidades.</p>
+                
+                <p>A terapia não é sobre "consertar" alguém, mas sobre <span class="emphasis">reconhecer-se como sujeito da própria história</span> — e, a partir daí, poder viver com mais consciência, liberdade e verdade.</p>
+            </div>
+            
+            <div class="specialties">
+                <div class="specialty-card">
+                    <h4>Adolescentes</h4>
+                    <p>Acompanhamento especializado para adolescentes, trabalhando questões de identidade, relacionamentos e transições próprias desta fase da vida.</p>
+                </div>
+                <div class="specialty-card">
+                    <h4>Adultos</h4>
+                    <p>Processo terapêutico para adultos que buscam autoconhecimento, superação de dificuldades e construção de novos sentidos para a existência.</p>
+                </div>
+                <div class="specialty-card">
+                    <h4>Idosos</h4>
+                    <p>Cuidado especializado para idosos, trabalhando questões de envelhecimento, perdas, memórias e ressignificação da vida.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-content fade-in">
+                <h2>Vamos Conversar?</h2>
+                <p class="contact-subtitle">Estou aqui para te acompanhar em sua jornada de autoconhecimento e crescimento pessoal. Cada encontro é uma oportunidade única de cuidado e transformação.</p>
+                
+                <div class="contact-buttons">
+                    <a href="#" class="btn btn-primary" onclick="openWhatsApp()">
+                        📱 Agendar pelo WhatsApp
+                    </a>
+                    <a href="#" class="btn btn-secondary" onclick="openInstagram()">
+                        📸 Instagram
+                    </a>
+                </div>
+                
+                <div class="contact-info">
+                    <h3>Informações do Atendimento</h3>
+                    <p><strong>CRP:</strong> 06/222679</p>
+                    <p><strong>Modalidade:</strong> Presencial e Online</p>
+                    <p><strong>Público:</strong> Adolescentes, Adultos e Idosos</p>
+                    <p><strong>Abordagem:</strong> Fenomenológico-Existencial</p>
+                    <p><strong>Contato:</strong> (18) 99636-6314</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Heloisa Aranha - Psicóloga Clínica</p>
+            <p>CRP: 06/222679 • Todos os direitos reservados</p>
+            <div class="footer-links">
+                <a href="#" onclick="openWhatsApp()">WhatsApp</a>
+                <a href="#" onclick="openInstagram()">Instagram</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function openWhatsApp() {
+            const phoneNumber = "5518996366314";
+            const message = "Olá, Heloísa! Gostaria de agendar uma consulta psicológica.";
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            window.open(whatsappURL, '_blank');
+        }
+
+        function openInstagram() {
+            const instagramUsername = "psi_heloisaaranha";
+            const instagramURL = `https://www.instagram.com/${instagramUsername}`;
+            window.open(instagramURL, '_blank');
+        }
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html
+
